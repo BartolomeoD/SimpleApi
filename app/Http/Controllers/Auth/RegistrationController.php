@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Auth\Requests\RegistrationApiRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegistrationApiRequest;
 use App\Services\LoginService;
 use App\Services\RegistrationService;
 

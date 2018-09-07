@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Auth\Requests\LoginApiRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginApiRequest;
 use App\Services\LoginService;
+
 class LoginController extends Controller
 {
     private $loginService;
@@ -18,14 +19,14 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-
-        return $this->response($this->loginService->login($email, $password));
+        $token = $this->loginService->login($email, $password);
+        return response()->json(['token' => $token],202);
     }
 
     public function logout()
     {
         $this->loginService->logout();
 
-        return $this->response(null, 204);
+        return response()->json(null, 204);
     }
 }

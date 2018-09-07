@@ -17,7 +17,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('articles', function () {
-        return ['its okey'];
-    });
+    Route::get('articles', 'Article\ArticleController@getAll');
+    Route::post('articles/create', 'Article\ArticleController@create');
+    Route::post('articles/comments/create', 'Article\CommentController@create');
 });
